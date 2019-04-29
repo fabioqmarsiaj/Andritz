@@ -12,11 +12,11 @@ namespace SubtitleTimeshift.Tests
         [TestMethod]
         async public Task TestShiftSubtitle()
         {
-            var inputPath = "The.Matrix.1999.BluRay.720p.Malay.srt";
-            var outputPath = "The.Matrix.1999.BluRay.720p.Malay - Copy.srt";
-            var assertPath = "The.Matrix.1999.BluRay.720p.Malay - Assert.srt";
+            var inputPath = @"C:\Users\Fabio\source\repos\graph\SubtitleTimeshift.Tests\The.Matrix.1999.BluRay.720p.Malay.srt";
+            var outputPath = @"C:\Users\Fabio\source\repos\graph\SubtitleTimeshift.Tests\The.Matrix.1999.BluRay.720p.Malay - Copy.srt";
+            var assertPath = @"C:\Users\Fabio\source\repos\graph\SubtitleTimeshift.Tests\The.Matrix.1999.BluRay.720p.Malay - Assert.srt";
 
-            var timeSpan = TimeSpan.FromMilliseconds(123);
+            var timeSpan = TimeSpan.FromMilliseconds(123.0);
             var encoding = System.Text.Encoding.UTF8;
 
             using (var inputStream = new FileStream(inputPath, FileMode.Open, FileAccess.Read))

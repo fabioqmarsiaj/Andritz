@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj", "{1D0DBDD9-6980-4559-9BED-138291617811}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph.Tests", "Graph.Tests\Graph.Tests.csproj", "{EFA86205-5B81-4E22-9C26-816AE9EEA44F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleTimeshift.Tests", "SubtitleTimeshift.Tests\SubtitleTimeshift.Tests.csproj", "{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleTimeShiftNET", "SubtitleTimeShiftNET\SubtitleTimeShiftNET.csproj", "{2A18D933-2176-4ACC-88CD-6443C93AFAF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69415B1C-0488-4DC0-998E-C16E2DD790B1}
 	EndGlobalSection
 EndGlobal
