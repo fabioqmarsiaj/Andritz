@@ -11,13 +11,13 @@ namespace SubtitleTimeshift
         
 
         private static Regex unit = new Regex(
-            @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> (?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)",
+            @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> (?<end>\d{2}\:\d{2}\:\d{1,2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)",
               RegexOptions.ECMAScript);
 
         async static public Task Shift(Stream input, Stream output, TimeSpan timeSpan, Encoding encoding, int bufferSize = 1024, bool leaveOpen = false)
         {
             int sequence = 0;
-
+            var result = "";
 
             using (StreamReader file = new StreamReader(input, encoding, leaveOpen, bufferSize))
             {
@@ -27,17 +27,20 @@ namespace SubtitleTimeshift
 
                     await destFile.WriteLineAsync(
 
+
                         unit.Replace(file.ReadToEnd(), delegate (Match m)
-                        {
-                            return m.Value.Replace(
+                        {                          
+                             result = m.Value.Replace(
                                 string.Format("{0}\r\n{1} --> {2}\r\n",
                                     m.Groups["sequence"].Value,
                                     m.Groups["start"].Value,
                                     m.Groups["end"].Value),
                                 string.Format("{0}\r\n{1:HH\\:mm\\:ss\\.fff} --> {2:HH\\:mm\\:ss\\.fff}\r\n",
-                                sequence++,
+                                    m.Groups["sequence"].Value,
                                     DateTime.Parse(m.Groups["start"].Value.Replace(",", ".")).Add(timeSpan),
                                     DateTime.Parse(m.Groups["end"].Value.Replace(",", ".")).Add(timeSpan)));
+
+                            return result;
                                 
                         }));                  
                 }

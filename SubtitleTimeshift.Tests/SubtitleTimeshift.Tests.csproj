@@ -65,10 +65,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SubtitleTimeShiftNET\SubtitleTimeShiftNET.csproj">
-      <Project>{2a18d933-2176-4acc-88cd-6443c93afaf5}</Project>
-      <Name>SubtitleTimeShiftNET</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SubtitleTimeshift\SubtitleTimeshift.csproj">
       <Project>{e85b8948-8b87-4fee-9376-af5dce65f351}</Project>
       <Name>SubtitleTimeshift</Name>

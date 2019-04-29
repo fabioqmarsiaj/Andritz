@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph.Tests", "Graph.Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleTimeshift.Tests", "SubtitleTimeshift.Tests\SubtitleTimeshift.Tests.csproj", "{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtitleTimeShiftNET", "SubtitleTimeShiftNET\SubtitleTimeShiftNET.csproj", "{2A18D933-2176-4ACC-88CD-6443C93AFAF5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{789CB2AD-00F4-45EA-9ACA-1CB407F4AADF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A18D933-2176-4ACC-88CD-6443C93AFAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
