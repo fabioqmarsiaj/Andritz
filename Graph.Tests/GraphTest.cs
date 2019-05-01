@@ -25,6 +25,7 @@ namespace Graph.Tests
                 new Link<string>("g","f"),
                 new Link<string>("f","e"),
             };
+            
 
             var graph = new Graph<string>(links);
             var paths = graph.RoutesBetween("a", "e");

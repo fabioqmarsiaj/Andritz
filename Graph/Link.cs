@@ -1,4 +1,6 @@
-﻿namespace Graph
+﻿using System;
+
+namespace Graph
 {
     public interface ILink<T>
     {
@@ -20,6 +22,11 @@
         public override string ToString()
         {
             return $"{Source?.ToString()} -> {Target?.ToString()}";
+        }
+
+        public static implicit operator Link<T>(System.Collections.Generic.List<T> v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -8,45 +8,41 @@ namespace SubtitleTimeshift
 {
     public class Shifter
     {
-        
-
-        private static Regex unit = new Regex(
-            @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> (?<end>\d{2}\:\d{2}\:\d{1,2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)",
-              RegexOptions.ECMAScript);
 
         async static public Task Shift(Stream input, Stream output, TimeSpan timeSpan, Encoding encoding, int bufferSize = 1024, bool leaveOpen = false)
         {
-            int sequence = 0;
-            var result = "";
+            var replacedGroups = "";
+            RegexPattern NewRegex = new RegexPattern();
+            var filePattern = NewRegex.GetRegexPattern();
 
-            using (StreamReader file = new StreamReader(input, encoding, leaveOpen, bufferSize))
+            using (StreamReader readFile = new StreamReader(input, encoding, leaveOpen, bufferSize))
+            using (StreamWriter replacedFile = new StreamWriter(output, encoding, bufferSize, leaveOpen))
             {
                 
-                using (StreamWriter destFile = new StreamWriter(output, encoding, bufferSize, leaveOpen))
-                {
 
-                    await destFile.WriteLineAsync(
+                await replacedFile.WriteLineAsync(
+                        filePattern.Replace(readFile.ReadToEnd(), delegate (Match m)
+                        {
+                            var sequence = m.Groups["sequence"].Value;
+                            var speechBeginningTime = m.Groups["speechBeginningTime"].Value;
+                            var speechEndTime = m.Groups["speechEndTime"].Value;
+                            var speechBeginningTimeFinal = DateTime.Parse(speechBeginningTime.Replace(",", ".")).Add(timeSpan);
+                            var speechEndTimeFinal = DateTime.Parse(speechEndTime.Replace(",", ".")).Add(timeSpan);
+                            var allValues = m.Value;
 
+                            replacedGroups = allValues.Replace(
+                               string.Format("{0}\r\n{1} --> {2}\r\n",
+                                   sequence,
+                                   speechBeginningTime,
+                                   speechEndTime),
+                               string.Format("{0}\r\n{1:HH\\:mm\\:ss\\.fff} --> {2:HH\\:mm\\:ss\\.fff}\r\n",
+                                   sequence,
+                                   speechBeginningTimeFinal,
+                                   speechEndTimeFinal));
 
-                        unit.Replace(file.ReadToEnd(), delegate (Match m)
-                        {                          
-                             result = m.Value.Replace(
-                                string.Format("{0}\r\n{1} --> {2}\r\n",
-                                    m.Groups["sequence"].Value,
-                                    m.Groups["start"].Value,
-                                    m.Groups["end"].Value),
-                                string.Format("{0}\r\n{1:HH\\:mm\\:ss\\.fff} --> {2:HH\\:mm\\:ss\\.fff}\r\n",
-                                    m.Groups["sequence"].Value,
-                                    DateTime.Parse(m.Groups["start"].Value.Replace(",", ".")).Add(timeSpan),
-                                    DateTime.Parse(m.Groups["end"].Value.Replace(",", ".")).Add(timeSpan)));
-
-                            return result;
-                                
-                        }));                  
-                }
-                
+                            return replacedGroups;
+                        }));
             }
         }
-
     }
 }
