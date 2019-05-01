@@ -20,15 +20,15 @@ namespace Graph
 
         public IObservable<IEnumerable<T>> RoutesBetween(T source, T target)
         {
-            // ab, ah
-            List<string> firstsPaths = new List<string>();
-
-            //bc, cb, cd, de, hg, gf, fe
-            List<string> possiblePaths = new List<string>();
-
-            //caiu fora : ba, da
 
             var allConections = Links;
+
+            // ab, ah
+            ObservableCollection<ILink<T>> firstsPaths = new ObservableCollection<ILink<T>>();
+            //bc, cb, cd, de, hg, gf, fe
+            ObservableCollection<ILink<T>> possiblePaths = new ObservableCollection<ILink<T>>();
+
+            //caiu fora : ba, da
 
             foreach (var connection in allConections)
             {
@@ -36,31 +36,41 @@ namespace Graph
                 {
                     //Takes both paths that contains source->"a"
                     //{a -> b} AND {a -> h}
-                    firstsPaths.Add(connection.ToString());
-
+                    firstsPaths.Add(connection);
                     
                 }
                 else
                 {
-                    //Takes all the remaining nodes
-                    possiblePaths.Add(connection.ToString());
+                    //Takes all the remaining links
+                    possiblePaths.Add(connection);
 
                     if (connection.Target.Equals(source))
                     {
-                        possiblePaths.Remove(connection.ToString());
+                        //Remove the links that have the parameter source as TARGET
+                        // We don't want to make the path backwards.
+                        possiblePaths.Remove(connection);
                     }                   
                 }
                 
             }
 
-           
-
+            
+            
          
 
             //abcd de
-            return null;
+            return firstsPaths;
         }
-               
+
+        public class TestClass : IObservable<IEnumerable<T>>
+        {
+     
+            public IDisposable Subscribe(IObserver<IEnumerable<T>> observer)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
     }
 }
 
