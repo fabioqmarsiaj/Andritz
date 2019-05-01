@@ -53,24 +53,9 @@ namespace Graph
                 }
                 
             }
-
-            
-            
-         
-
             //abcd de
             return firstsPaths;
         }
-
-        public class TestClass : IObservable<IEnumerable<T>>
-        {
-     
-            public IDisposable Subscribe(IObserver<IEnumerable<T>> observer)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
     }
 }
 
